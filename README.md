@@ -22,7 +22,7 @@ Shuyi Zhang, Bin Guo, Anlan Dong, Jing He, Ziping Xu, S. Chen](https://www.seman
 
 ### Package
 
--   rhsiny : version xx
+-   rshiny : version xx
 -   data.table : version xx
 
 ## Methods
@@ -33,20 +33,20 @@ Comment vars liées une aux autre
 
 -   Biejin data
     1. Data visualisation
-        1. Geogrpahical between station
-        1. Varriation / repetition in years
+        1. Geographical between station
+        1. Variation / repetition in years
         1. Evol temperature over time space
         1. Shiny package pie chart on map
         1. CCL data vis -> 1st global understanding of the data
-    2. Dimention reduction
+    2. Dimension reduction
         1. ACP qualité air
         1. ACP chq poluant
-        1. ACP random row line and columns if data set or varriation not enough
+        1. ACP random row line and columns if data set or variation not enough
         1. t-SNE
         1. u-MAP
         1. CCL 1 : paterns / interaction / correlation possible of vars
     3. others
-        1. mat correlation res ~ fa -> covarriate of two factor entre eux
+        1. mat correlation res ~ fa -> covariate of two factor entre eux
     4. Modele lineaire
         1. lm simple
         1. lm intereaction

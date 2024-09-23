@@ -35,28 +35,8 @@ server <- function(input, output, session) {
     if (!is.null(click_info$id)) {
       if (click_info$id == "Aotizhongxin") {
         output$clicked_point <- renderText("Station d'Aotizhongxin")
-      } else if (click_info$id == "Changping") {
-        output$clicked_point <- renderText("Station de Changping")
-      } else if (click_info$id == "Dingling") {
-        output$clicked_point <- renderText("Station de Dingling")
-      } else if (click_info$id == "Dongsi") {
-        output$clicked_point <- renderText("Station de Dongsi")
-      } else if (click_info$id == "Guanyuan") {
-        output$clicked_point <- renderText("Station de Guanyuan")
-      } else if (click_info$id == "Gucheng") {
-        output$clicked_point <- renderText("Station de Gucheng")
-      } else if (click_info$id == "Huairou") {
-        output$clicked_point <- renderText("Station de Huairou")
-      } else if (click_info$id == "Nongzhanguan") {
-        output$clicked_point <- renderText("Station de Nongzhanguan")
-      } else if (click_info$id == "Shunyi") {
-        output$clicked_point <- renderText("Station de Shunyi")
-      } else if (click_info$id == "Tiantan") {
-        output$clicked_point <- renderText("Station de Tiantan")
-      } else if (click_info$id == "Wanliu") {
-        output$clicked_point <- renderText("Station de Wanliu")
-      } else if (click_info$id == "Wanshouxigong") {
-        output$clicked_point <- renderText("Station de Wanshouxigong")
+      } else {
+        output$clicked_point <- renderText(paste("Station de " , click_info$id))
       }
     }
   })

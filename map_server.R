@@ -21,7 +21,7 @@ output$map <- renderLeaflet({
     setView(116.2, 39.88, zoom = 9) %>%   # Vue centrée sur Pekin
     addMarkers(
       lng = data_points$lng + 0.16,
-      lat = data_points$lat + 0.11,
+      lat = data_points$lat + 0.09,
       popup = data_points$name,
       layerId = data_points$id
     )

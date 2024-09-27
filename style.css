@@ -1,0 +1,110 @@
+/* General body styles */
+body {
+  background-color: #E6E6FA; /* Light lavender-like color */
+  font-family: "Courier New", Courier, monospace; /* Retro font */
+  margin: 0;
+  padding: 0;
+}
+
+/* Large window on the left */
+.large-window {
+  background: linear-gradient(135deg, #cccccc, #e0e0e0); /* Slight gradient */
+  border: 3px solid #000 !important; /* Black border */
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5); /* 3D effect */
+  padding: 20px;
+  height: 600px; /* Adjust height as needed */
+}
+
+/* Weather module on the top right */
+.weather-module {
+  background: linear-gradient(135deg, #cccccc, #e0e0e0); /* Slight gradient */
+  border: 3px solid #000 !important; /* Black border */
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5); /* 3D effect */
+  padding: 20px;
+  position: relative; /* To position the small box inside */
+}
+.weather-module h3 {
+  color: #1fca7a !important; /* Ensure green color for h3 in weather module */
+}
+/* Bottom-right module */
+.bottom-right-module {
+  background: linear-gradient(135deg, #d3d3d3, #b8b8b8); /* Slight metallic gradient */
+  border: 3px solid #000000 !important; /* Thick, black border for retro look */
+  box-shadow: 10px 10px 0px #888888, /* Hard shadow for 3D effect */
+              inset -2px -2px 5px rgba(255, 255, 255, 0.2), /* Inner shadow for depth */
+              inset 2px 2px 5px rgba(0, 0, 0, 0.4); /* Inner shadow for deeper effect */
+  padding: 20px;
+  position: relative;
+  font-family: 'Courier New', Courier, monospace !important; /* Retro font */
+  color: #333; /* Darker font color to stand out */
+  text-shadow: 1px 1px 2px #ffffff; /* Slight text shadow for retro feel */
+}
+
+/* Optional hover effect for extra retro detail */
+.bottom-right-module:hover {
+  box-shadow: 10px 10px 0px #666666, /* Darker shadow on hover */
+              inset -2px -2px 5px rgba(255, 255, 255, 0.2),
+              inset 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+
+/* Styling for headers and text */
+h2, h3, h4, h5 {
+  color: #1fca7a; /* Darker text */
+}
+h6 {
+  color: rgb(132, 120, 120);
+  font-family: 'Courier New', Courier, monospace !important; /* Retro font */
+}
+
+/* Styling for the small box */
+.small-box {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 150px;
+  height: 70px; /* Adjust height as needed */
+  border: 1px solid #000 !important; /* Black border for small box */
+  padding: 5px;
+  font-size: 12px;
+  background-color: #f5f5f5; /* Light background for small box */
+  text-align: center; /* Center text */
+}
+
+/* Styling for the blinking LED */
+div#led {
+  background-color: rgb(169, 40, 40) !important;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  animation: blink 1s infinite;
+  margin: 10px auto; /* Center align the LED */
+}
+/* Blinking animation */
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.window-with-bg-uniform {
+  /*background-image: url('radio.png');  /* Use your PNG image */
+  /*background-size: cover;  /* Ensures the image covers the whole container */
+  /*background-position: center;  /* Center the image */
+  /*background-repeat: no-repeat;  /* Prevent the image from repeating */
+  background-color: #a49292;
+  border-radius: 15px;  /* Optional: makes the edges rounded */
+  padding: 20px;  /* Add padding inside the container */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);  /* Adds a shadow for depth */
+  height: 100%; /* Optional: set a specific height */
+}
+.window-with-bg {
+  background-image: url('radio3.png');  /* Use your PNG image */
+  background-size: cover;  /* Ensures the image covers the whole container */
+  background-position: center;  /* Center the image */
+  background-repeat: no-repeat;  /* Prevent the image from repeating */
+  border-radius: 15px;  /* Optional: makes the edges rounded */
+  padding: 20px;  /* Add padding inside the container */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);  /* Adds a shadow for depth */
+  height: 100%; /* Optional: set a specific height */
+}

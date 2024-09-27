@@ -80,6 +80,18 @@ time_stamp = function (year_start, month_start, day_start, hour_start, year_stop
       (year == year_start & year != year_stop & month >= month_start) |  # If it's the start year, filter from m_start
       (year != year_start & year == year_stop & month <= month_stop) |  # If it's the start year, filter from m_start
       (year > year_start & year < year_stop)         # For years in between, include all months
+    ) %>x% 
+    filter(
+      (month_start == month_stop & day_start <= day & day <= day_stop) |
+      (month == month_start & month != month_stop & day >= day_start) |  # If it's the start month, filter from m_start
+      (month != month_start & month == month_stop & day <= day_stop) |  # If it's the start month, filter from m_start
+      (month > month_start & month < month_stop)         # For years in between, include all months
+    )%>x% 
+    filter(
+      (day_start == day_stop & hours_start <= hours & hours <= hours_stop) |
+        (day == day_start & day != day_stop & hours >= hours_start) |  # If it's the start day, filter from m_start
+        (day != day_start & day == day_stop & hours <= hours_stop) |  # If it's the start day, filter from m_start
+        (day > day_start & day < day_stop)         # For years in between, include all hourss
     )
     
     

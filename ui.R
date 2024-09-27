@@ -31,8 +31,13 @@ ui <- navbarPage(
   
   # Troisième page (Onglet 3)
   tabPanel("Etude des séries temporelles",
-           h1("Bienvenue sur la page d'étude des séries temporelles"),
-           p("Voici la description de la troisième page.")
+           
+           fluidRow(
+             column(8,
+                    leafletOutput("map"),
+             ),
+             column(4, wellPanel(h3(textOutput("clicked_point"))))
+           )
   ),
   
   # Quatrième page (Onglet 4)

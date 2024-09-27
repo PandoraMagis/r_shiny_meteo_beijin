@@ -1,0 +1,23 @@
+$ ls
+pour contenu du fichier
+
+
+ouvrir git bash
+
+git clone https://github.com/PandoraMagis/r_shiny_meteo_beijin.git
+
+cd r_shiny_meteo_beijin
+
+git checkout -b nom_de_ma_branche
+
+je mets les fichiers
+
+git add 
+git commit
+message
+
+ou message unique 
+git add *
+$git commit -m "message"
+git push --set-upstream origin nom_de_ma_branche
+git status

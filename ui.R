@@ -17,10 +17,10 @@ ui <- navbarPage(
              column(4,
                     wellPanel(
                       h3(textOutput("clicked_point"))
-                      )
                     )
+             )
            )
-
+           
   ),
   
   # Deuxième page (Onglet 2)
@@ -41,4 +41,3 @@ ui <- navbarPage(
            p("Voici la description de la quatrième page.")
   )
 )
-

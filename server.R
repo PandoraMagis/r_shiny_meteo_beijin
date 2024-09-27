@@ -1,33 +1,35 @@
 library(shiny)
 library(leaflet)
 
+#source("/Users/achillegausseres/OneDrive/PRO/ACO/3A/Projet_Big_Data/r_shiny_meteo_beijin_repo/utils:coord_transform.R")
+
 # Logique serveur
 server <- function(input, output, session) {
+  
+  data_points <- data.frame(
+    id = c("Aotizhongxin","Changping","Dingling","Dongsi","Guanyuan","Gucheng","Huairou","Nongzhanguan","Shunyi","Tiantan","Wanliu","Wanshouxigong"),
+    name = c("Aotizhongxin","Changping","Dingling","Dongsi","Guanyuan","Gucheng","Huairou","Nongzhanguan","Shunyi","Tiantan","Wanliu","Wanshouxigong"),
+    lng = c(116.23,116.12,116.13,116.25,116.21,116.10,116.3905,116.47,116.39,116.24,116.17,116.18),
+    lat = c(39.58,40.13,40.18,39.55,39.54,39.54,40.1834,39.94,40.07,39.52,39.59,39.56),
+    stringsAsFactors = FALSE
+  )
+
   
   # Création de la carte leaflet
   output$map <- renderLeaflet({
     leaflet() %>%
-      addTiles(urlTemplate = "http://webrd02.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scl=1&style=7&x={x}&y={y}&z={z}",
-               attribution = 'Map data © <a href="https://www.amap.com/">Amap</a>') %>%
-      #addProviderTiles(providers$CartoDB.Positron) %>%
+      addProviderTiles(providers$CartoDB.Positron) %>%
       setView(116.2, 39.88, zoom = 9) %>%   # Vue centrée sur Pekin
-      addMarkers(lng = 116.23, lat = 39.58, popup = "Aotizhongxin",layerId = "Aotizhongxin") %>%  
-      addMarkers(lng = 116.12, lat = 40.13, popup = "Changping",layerId = "Changping") %>% 
-      addMarkers(lng =116.13, lat = 40.18, popup = "Dingling", layerId = "Dingling") %>%
-      addMarkers(lng = 116.25, lat= 39.55, popup = "Dongsi", layerId = "Dongsi") %>%
-      addMarkers(lng = 116.21, lat= 39.54, popup = "Guanyuan", layerId = "Guanyuan") %>%
-      addMarkers(lng = 116.10, lat= 39.54, popup = "Gucheng", layerId = "Gucheng") %>%
-      addMarkers(lng = 116.3905, lat= 40.1834, popup = "Huairou", layerId = "Huairou") %>%
-      addMarkers(lng = 116.47, lat= 39.94, popup = "Nongzhanguan", layerId = "Nongzhanguan") %>%
-      addMarkers(lng = 116.39, lat= 40.07 , popup = "Shunyi", layerId = "Shunyi") %>%
-      addMarkers(lng = 116.24, lat= 39.52, popup = "Tiantan", layerId = "Tiantan" ) %>%
-      addMarkers(lng = 116.17, lat= 39.59, popup = "Wanliu", layerId = "Wanliu") %>%
-      addMarkers(lng = 116.18, lat= 39.56, popup = "Wanshouxigong", layerId = "Wanshouxigong")
-    
-    
+      addMarkers(
+        lng = data_points$lng + 0.16,
+        lat = data_points$lat + 0.11,
+        popup = data_points$name,
+        layerId = data_points$id
+      )
+
   })
-
-
+  
+  
   # Observer les clics sur les marqueurs
   observeEvent(input$map_marker_click, {
     click_info <- input$map_marker_click

@@ -1,6 +1,6 @@
 library(shiny)
 library(zoo)
-df<-read.table("df.csv",sep = ",",header = TRUE,stringsAsFactors = TRUE)
+
 
 # UI changes
 ui <- fluidPage(

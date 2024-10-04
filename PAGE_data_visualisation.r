@@ -6,14 +6,19 @@ source("./data_text_buble/data_text_ui.r")
 #source("utils/coord_transform.R")
 
 page_visu_data <- tabPanel(
-    nom_page_1, 
-    # display flex components
-    div(
-        style = "display: flex; flex-direction: row;",
-        div(style = "width:33% ; height : 700px", map_page_1), # Height don't work on map and it's quite ufgly to not have map and selector at same size
-        div(style = "width:45%", ui_radio  ), 
-        div(style = "width:33%", df_info_buble)
-    ),
-    # , flex = 1, width = "100%", height = "100%"
+  nom_page_1, 
+  # display flex components
+  div(
+    style = "display: flex; flex-direction: row; height: 100vh;", # Flex row to split the page into two parts (left and right)
     
+    # Left side: map above the radio buttons
+    div(
+      style = "width: 50%; display: flex; flex-direction: column;", # Flex column for left part
+      div(style = "flex: 1; height: 50%;", map_page_1), # Map on top
+      div(style = "flex: 0 0 30%; height: auto;", ui_radio)    # Reduce size of ui_radio (e.g., 30% of the left side height)
+    ),
+    
+    # Right side: info bubble
+    div(style = "width: 50%;", df_info_buble) # Right part
+  )
 )

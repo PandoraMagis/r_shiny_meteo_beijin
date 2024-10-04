@@ -84,6 +84,35 @@ chosen_row <- reactive({
       paste(round(row$avg_temp,1),"°C")
     }
   })
+  output$index_IQA <- renderText({
+    row <- chosen_row()
+    
+    if (is.null(row)) {
+      "!!"  # Show "!!" if no data exists
+    } else {
+      iqa_value <- row$IQA
+      color <- ""
+      
+      # Define color based on IQA value
+      if (iqa_value == "bon") {
+        color <- "green"
+      } else if (iqa_value == "modéré") {
+        color <- "blue"
+      } else if (iqa_value == "non-sain pour sensibles") {
+        color <- "yellow"
+      } else if (iqa_value == "non-sain") {
+        color <- "orange"
+      } else if (iqa_value == "très non-sain") {
+        color <- "red"
+      } else if (iqa_value == "dangereux") {
+        color <- "purple"
+      }
+      
+      # Return HTML styled text with color
+      paste0('<span style="color:', color, ';">l\'Index de Qualité de l\'Air --IQA--: ', iqa_value, '</span>')
+    }
+  })
+  
   
   # Example weather icon (placeholder)
   output$weather_icon <- renderUI({
@@ -122,7 +151,6 @@ chosen_row <- reactive({
     }
     paste("année:", selected_year)
   })
-
   observe({
     if (is.null(input$month_radio)) {
       updateRadioButtons(session, "month_radio", selected = "jan")

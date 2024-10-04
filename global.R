@@ -7,8 +7,8 @@ library(leaflet)
 library(zoo)
  
 # Laoding data frame
-df<-read.table("df.csv",sep = ",",header = TRUE,stringsAsFactors = TRUE)
-
+df<-read.table("dfplusIQA.csv",sep = ",",header = TRUE,stringsAsFactors = TRUE)
+options(encoding = "UTF-8")
 # Importation des fichiers UI
 source("./PAGE_data_visualisation.r")
 source("./theme_switch/switch_ui.r")

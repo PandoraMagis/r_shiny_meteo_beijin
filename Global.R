@@ -1,15 +1,17 @@
 # app.R
 
+library(dplyr)
 library(shiny)
 library(leaflet)
-
-# Importation de la  fonction de transformation
-#source("utils/coord_transform.R")
+# jsp a quo sert cette lib la
+library(zoo)
+ 
+# Laoding data frame
+df<-read.table("df.csv",sep = ",",header = TRUE,stringsAsFactors = TRUE)
 
 # Importation des fichiers UI
-source("map_ui.R")
-#source("boutons_ui.R")
-
+source("./PAGE_data_visualisation.r")
+source("./theme_switch/switch_ui.r")
 
 # Importation des fichiers serveur
 #source("boutons_serveur.R")
@@ -19,7 +21,7 @@ ui <- navbarPage(
   title = "Météo et pollution à Pékin entre 2013 et 2017",  # Titre de l'application dans la barre de navigation
   
   # Première page (Onglet 1)
-  tabPanel(nom_page_1, map_page_1),
+  page_visu_data,
   
   # Deuxième page (Onglet 2)
   tabPanel("Correlation entre les facteurs",
@@ -37,12 +39,15 @@ ui <- navbarPage(
   tabPanel("Modèle de prévision des pics de pollution",
            h1("Bienvenue sur le modèle de prévision des pics de pollution"),
            p("Voici la description de la quatrième page.")
-  )
+  ),
+  switch_ui
 )
 
 # Serveur principal avec les modules
 server <- function(input, output, session) {
-  source("map_server.R", local = T)
+  source("./map_selector/map_server.R", local = T)
+  source("./radio_selector/radio_server.R", local = T)
+  source("./theme_switch/switch_server.r", local = T)
 }
 
 # Lancer l'application

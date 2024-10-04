@@ -1,0 +1,9 @@
+sur la page 1 radio :
+	¤ implémenter les polluants
+	¤ lier le module maps à la variable localisation pour afficher les données
+	¤ lier le bouton switch dark-mode à la maps
+
+sur la page 2:
+
+	¤ visualisation des séries au choix sur une période choisie, max 2/3 séries?
+	¤ on garde les dates sélectionnées sur la page 1 pour garder une continuité/un sens de l'exploration entre les pages

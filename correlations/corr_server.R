@@ -12,10 +12,6 @@ data$hour<-as.factor(data$hour)
 data$IQA_binaire<-as.factor(data$IQA_binaire)
 summary(data)
 
-#missing data
-missing_data <- colSums(is.na(data)) / nrow(data) * 100
-print(missing_data)  # View missing percentages per column
-
 #correlations
 require("corrplot")
 data$IQA_binaire<-as.numeric(data$IQA_binaire)
@@ -37,7 +33,18 @@ data$IQA_numeric <- as.numeric(data$IQA)
 #correlations CO et PM2.5 plus élevées avec IQA_numeric que IQA_binaire donc 
 #plus responsables de gros pics ?
 
-
+output$missing_data <- renderText({
+  data<-df
+  data$year<-as.factor(data$year)
+  data$month<-as.factor(data$month)
+  data$day<-as.factor(data$day)
+  data$hour<-as.factor(data$hour)
+  data$IQA_binaire<-as.factor(data$IQA_binaire)
+  summary(data)
+  missing_data <- colSums(is.na(data)) / nrow(data) * 100
+  formatted_data <- paste(names(missing_data), ":", round(missing_data, 2), "%", collapse = ", ")
+  paste("donnees manquantes par colonne en pourcentage:", formatted_data)  
+})
 
 #df$pollutant_ma <- rollmean(df$pollutant_variable, k = 24, fill = NA)  # 24-hour moving average
 
@@ -63,6 +70,7 @@ page_corr.plot_densite <- ggplot(dt_melt, aes(x = concentration, fill = pollutan
   theme_minimal()
 
 
+
 output$corrPlot <- renderPlot({
   # Subset numeric columns and calculate correlation matrix
   cor_matrix <- cor(data[,c(6:15,17,20:25,27,28)],use = "complete.obs")
@@ -85,36 +93,36 @@ output$boxplots_horaires1 <- renderPlot({
   require("patchwork")
   plotPM2.5<-ggplot(data, aes_string(x = x_var, y = data$PM2.5)) +
     geom_boxplot() +
-    labs(title = "polluants en fonction de l'heure de la journée",
-         x = paste("variable plage de temps: ",x_var), y = "concentration du polluant")
+    labs(title = "boxplot concentration de PM2.5 et temps",
+         x = paste("variable plage de temps: ",x_var), y = "concentration du polluant PM2.5")
   plotPM10<-ggplot(data, aes_string(x = x_var, y = data$PM10)) +
     geom_boxplot() +
-    labs(title = "polluants en fonction de l'heure de la journée",
-         x = paste("variable plage de temps: ",x_var), y = "concentration du polluant")
+    labs(title = "boxplot concentration de PM10 et temps",
+         x = paste("variable plage de temps: ",x_var), y = "concentration du polluant PM10")
   (plotPM2.5+plotPM10)
 })
 output$boxplots_horaires2 <- renderPlot({
   x_var <- input$time_period
   plotSO2<-ggplot(data, aes_string(x = x_var, y = data$SO2)) +
     geom_boxplot() +
-    labs(title = "polluants en fonction de l'heure de la journée",
-         x = paste("variable plage de temps: ",x_var), y = "concentration du polluant")
+    labs(title = "boxplot concentration de SO2 et temps",
+         x = paste("variable plage de temps: ",x_var), y = "concentration du polluant SO2")
   plotNO2<-ggplot(data, aes_string(x = x_var, y = data$NO2)) +
     geom_boxplot() +
-    labs(title = "polluants en fonction de l'heure de la journée",
-         x = paste("variable plage de temps: ",x_var), y = "concentration du polluant")
+    labs(title = "boxplot concentration de NO2 et temps",
+         x = paste("variable plage de temps: ",x_var), y = "concentration du polluant NO2")
   (plotSO2+plotNO2)
 })
 output$boxplots_horaires3 <- renderPlot({
   x_var <- input$time_period
   plotCO<-ggplot(data, aes_string(x = x_var, y = data$CO)) +
     geom_boxplot() +
-    labs(title = "polluants en fonction de l'heure de la journée",
-         x = paste("variable plage de temps: ",x_var), y = "concentration du polluant")
+    labs(title = "boxplot concentration de CO et temps",
+         x = paste("variable plage de temps: ",x_var), y = "concentration du polluant CO")
   plotO3<-ggplot(data, aes_string(x = x_var, y = data$O3)) +
     geom_boxplot() +
-    labs(title = "polluants en fonction de l'heure de la journée",
-         x = paste("variable plage de temps: ",x_var), y = "concentration du polluant")
+    labs(title = "boxplot concentration de O3 et temps",
+         x = paste("variable plage de temps: ",x_var), y = "concentration du polluant O3")
   (plotCO+plotO3)
 })
 

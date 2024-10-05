@@ -11,6 +11,7 @@ df<-read.table("dfplusIQA.csv",sep = ",",header = TRUE,stringsAsFactors = TRUE)
 options(encoding = "UTF-8")
 # Importation des fichiers UI
 source("./PAGE_data_visualisation.r")
+source("./PAGE_correlations.R")#onglet correlations
 source("./theme_switch/switch_ui.r")
 
 # Importation des fichiers serveur
@@ -24,10 +25,7 @@ ui <- navbarPage(
   page_visu_data,
   
   # Deuxième page (Onglet 2)
-  tabPanel("Correlation entre les facteurs",
-           h1("Bienvenue sur la page d'étude de la correlation entre les variables"),
-           p("Voici la description de la deuxième page.")
-  ),
+  page_visu_correlations,
   
   # Troisième page (Onglet 3)
   tabPanel("Etude des séries temporelles",
@@ -48,6 +46,7 @@ server <- function(input, output, session) {
   source("./map_selector/map_server.R", local = T)
   source("./radio_selector/radio_server.R", local = T)
   source("./theme_switch/switch_server.r", local = T)
+  source("./correlations/corr_server.R", local = T)
 }
 
 # Lancer l'application

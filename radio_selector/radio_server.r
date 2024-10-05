@@ -96,13 +96,13 @@ chosen_row <- reactive({
       # Define color based on IQA value
       if (iqa_value == "bon") {
         color <- "green"
-      } else if (iqa_value == "modéré") {
+      } else if (iqa_value == "modere") {
         color <- "blue"
       } else if (iqa_value == "non-sain pour sensibles") {
         color <- "yellow"
       } else if (iqa_value == "non-sain") {
         color <- "orange"
-      } else if (iqa_value == "très non-sain") {
+      } else if (iqa_value == "tres non-sain") {
         color <- "red"
       } else if (iqa_value == "dangereux") {
         color <- "purple"

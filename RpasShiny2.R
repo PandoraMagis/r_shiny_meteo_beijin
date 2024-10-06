@@ -76,10 +76,8 @@ plotPM10<-ggplot(data, aes(x = data$hour, y = data$PM10)) +
 plotPM2.5+plotPM10
 
 
-
-
-
-
+mod<-lm(CO~hour,data=data)
+emmeans(mod,~hour)
 
 
 

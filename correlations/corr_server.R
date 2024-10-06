@@ -1,5 +1,5 @@
 library(shiny)
-
+library(ggplot2)
 #df <- read.csv("dfplusIQA.csv",sep=",",dec=".",header=T,stringsAsFactors = T,fileEncoding = "utf-8")
 
 
@@ -33,18 +33,42 @@ data$IQA_numeric <- as.numeric(data$IQA)
 #correlations CO et PM2.5 plus élevées avec IQA_numeric que IQA_binaire donc 
 #plus responsables de gros pics ?
 
-output$missing_data <- renderText({
-  data<-df
-  data$year<-as.factor(data$year)
-  data$month<-as.factor(data$month)
-  data$day<-as.factor(data$day)
-  data$hour<-as.factor(data$hour)
-  data$IQA_binaire<-as.factor(data$IQA_binaire)
-  summary(data)
+output$missing_data <- renderUI({
+  data <- df
+  data$year <- as.factor(data$year)
+  data$month <- as.factor(data$month)
+  data$day <- as.factor(data$day)
+  data$hour <- as.factor(data$hour)
+  data$IQA_binaire <- as.factor(data$IQA_binaire)
+  
+  # Calculate the percentage of missing data
   missing_data <- colSums(is.na(data)) / nrow(data) * 100
-  formatted_data <- paste(names(missing_data), ":", round(missing_data, 2), "%", collapse = ", ")
-  paste("donnees manquantes par colonne en pourcentage:", formatted_data)  
+  
+  # Create an HTML string with color-coding based on missing data percentage
+  formatted_data <- sapply(seq_along(missing_data), function(i) {
+    column_name <- names(missing_data)[i]
+    missing_percent <- round(missing_data[i], 2)
+    
+    if (missing_percent == 0) {
+      color <- "#004d00"  
+    } else if (missing_percent <= 2.5) {
+      color <- "#00b300"  
+    } else if (missing_percent <= 6) {
+      color <- "#cccc00"  
+    } else if (missing_percent <= 12) {
+      color <- "#cc8500"  
+    } else {
+      color <- "#FF0000"  
+    }
+    
+    # Return HTML span with color
+    paste0("<span style='color:", color, "'>", column_name, ": ", missing_percent, "%</span>")
+  })
+  
+  # Join all columns with a comma and return as HTML
+  HTML(paste("Données manquantes par colonne en pourcentage:", paste(formatted_data, collapse = ", ")))
 })
+
 
 #df$pollutant_ma <- rollmean(df$pollutant_variable, k = 24, fill = NA)  # 24-hour moving average
 
@@ -125,6 +149,15 @@ output$boxplots_horaires3 <- renderPlot({
          x = paste("variable plage de temps: ",x_var), y = "concentration du polluant O3")
   (plotCO+plotO3)
 })
-
-
+require("DT")
+output$emmeansplots <- DT::renderDataTable({
+  require("emmeans")
+  x_var <- input$time_period
+  y_var <- input$polluant_select_emmeans
+  formula <- as.formula(paste(y_var,"~", x_var))
+  mod <- lm(formula, data = data)
+  signif <- emmeans(mod, specs = x_var, data = data)
+  signif_summary <- as.data.frame(summary(signif))
+  DT::datatable(signif_summary, options = list(pageLength = 25, autoWidth = TRUE))
+})
 

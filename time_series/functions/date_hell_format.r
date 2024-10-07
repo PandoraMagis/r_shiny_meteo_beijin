@@ -1,18 +1,11 @@
 time_stamp = function (year_start, month_start, day_start, hour_start, year_stop, month_stop, day_stop, hour_stop) {
   if (
     ( year_start > year_stop ) |
-    ( year_start == year_stop &&  month_start < month_stop) | 
-    ( year_start == year_stop &&  month_start == month_stop && day_start < day_stop) | # nolint
-    ( year_start == year_stop &&  month_start == month_stop && day_start == day_stop && hour_start < hour_stop ) # nolint
+    ( year_start == year_stop &&  month_start > month_stop) | 
+    ( year_start == year_stop &&  month_start == month_stop && day_start > day_stop) | # nolint
+    ( year_start == year_stop &&  month_start == month_stop && day_start == day_stop && hour_start > hour_stop ) # nolint
   ){
     # space is neggatif
-    # TODO - print the error to user
-    print( year_start < year_stop )
-    print( year_start == year_stop &&  month_start < month_stop)
-    print( year_start == year_stop &&  month_start == month_stop && day_start < day_stop)
-    print( year_start == year_stop &&  month_start == month_stop && day_start == day_stop && hour_start < hour_stop )
-    
-    print("dead date start before date end")
   } else {
     # print(paste(
     #   paste0(year_start,"/", month_start,"/", day_start,"-", hour_start,"h"),
@@ -22,7 +15,6 @@ time_stamp = function (year_start, month_start, day_start, hour_start, year_stop
      
     df$date <- as.Date(paste0(df$year,"-",df$month,"-",df$day))
 
-    
     return(
       df %>% 
         # wiping out everything before start date

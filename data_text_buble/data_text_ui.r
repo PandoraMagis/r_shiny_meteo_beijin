@@ -35,11 +35,16 @@ df_info_buble <- wellPanel(
         ),    
         div(
             class = "bottom-right-module",
-            h3("Additional Info"),
-            p("Content for the additional module goes here."),
-            p("Example text or metrics."),
+            h3("informations supplémentaires"),
+            htmlOutput("index_IQA"),
+            tableOutput("formattedTable"),
+            p("le polluant responsable de l'IQA est affiché en gras"),
             fluidRow(
                 # textOutput("clicked_point"),
+                br(),
+                br(),
+                p("------------------------------------"),
+                p("paramètre des sélecteurs ci-dessous:"),
                 textOutput("selected_year"),
                 textOutput("selected_month"),
                 textOutput("slider_value"),
@@ -48,9 +53,8 @@ df_info_buble <- wellPanel(
             ),
             br(),
             br(),
-            p("tes pits icones qui trainaient <3"),
-            tags$img(src = "arrow_down.png", width = "20px"),
-            tags$img(src = "arrow_up.png", width = "20px")
+            tags$img(src = "arrow_down.png", width = "20px"),p("température plus basse que la moyenne des 7 derniers jours"),
+            tags$img(src = "arrow_up.png", width = "20px"),p("température plus élevée que la moyenne des 7 derniers jours")
         )
     ),
 

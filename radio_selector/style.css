@@ -24,7 +24,8 @@ body {
   position: relative; /* To position the small box inside */
 }
 .weather-module h3 {
-  color: #1fca7a !important; /* Ensure green color for h3 in weather module */
+  color: #5c1e64 !important; /* Ensure green color for h3 in weather module */
+  font-weight: bold; /* Make the text bold */
 }
 /* Bottom-right module */
 .bottom-right-module {
@@ -50,7 +51,7 @@ body {
 
 /* Styling for headers and text */
 h2, h3, h4, h5 {
-  color: #1fca7a; /* Darker text */
+  color: #332a43; /* Darker text */
 }
 h6 {
   color: rgb(132, 120, 120);

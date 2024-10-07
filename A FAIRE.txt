@@ -1,0 +1,22 @@
+à faire:
+
+page principale
+	¤ comment lier dark-mode au input stylé
+	¤ changer l'icône mettre icône neutre
+	¤ icône quand ya pluie?
+	¤ "tes ptis icônes qui trainaient"
+	> afficher polluants 
+	> changer "additional info"
+	> 
+
+page correlations 
+	> peut-être mettre sous forme tableau données manquantes?
+	> "journalière"?
+	> changer titre analyse exploratoire des données
+
+Etude des séries temporelles
+	> ???
+
+modélisation 
+	> intégrer le fichier R
+	> 

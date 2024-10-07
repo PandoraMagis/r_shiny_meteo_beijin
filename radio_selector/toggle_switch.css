@@ -202,7 +202,7 @@
 }
 /* Additional styles for top-left positioning */
 .theme-switch-container {
-  position: absolute;
+  position: fixed;
   bottom: 10px;   /* Adjust this value to fine-tune */
   right: 10px;  /* Adjust this value to fine-tune */
   z-index: 1000; /* Ensure it stays on top of other elements */

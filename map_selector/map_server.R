@@ -15,18 +15,25 @@ data_points <- data.frame(
 
 
 # Création de la carte leaflet
+# Dynamically update the leaflet map based on the theme switch
 output$map <- renderLeaflet({
   leaflet() %>%
-    addProviderTiles(providers$CartoDB.Positron) %>%
-    setView(116.2, 39.88, zoom = 9) %>%   # Vue centrée sur Pekin
+    addProviderTiles(
+      if (is.null(input$theme_switch_checkbox) || !input$theme_switch_checkbox) {
+        providers$CartoDB.Positron  # Default to light mode if null or false
+      } else {
+        providers$CartoDB.DarkMatter  # Dark mode
+      }
+    ) %>%
+    setView(116.2, 39.88, zoom = 9) %>%  # View centered on Beijing
     addMarkers(
       lng = data_points$lng + 0.16,
       lat = data_points$lat + 0.09,
       popup = data_points$name,
       layerId = data_points$id
     )
-
 })
+
 
 
 # Observer les clics sur les marqueurs

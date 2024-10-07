@@ -30,8 +30,6 @@ observeEvent({
     input$hour_end
     },{
     
-    
-    
     rv$time_series_df <- time_stamp(
         year_start  = input$year_in,
         month_start = input$month_in,
@@ -60,58 +58,53 @@ observeEvent({
     input$hour_end
     # added triggers
     input$time_series_vars
-    input$periode_mod
+    # input$periode_mod
 },{
     req(rv$time_series_df)
-    print(input$time_series_vars)
 
     if (!is.null(rv$time_series_df) && length(input$time_series_vars) >= 1 ){
         output$develop_output <- renderText("")
 
 
+    req(input$time_series_vars)
+    
+    # setup graph df
+    long_data <- rv$time_series_df %>%
+        tidyr::pivot_longer(cols = all_of(input$time_series_vars), 
+            names_to = "variable", 
+            values_to = "value"
+        )
 
     output$line_evo_multi_var <- renderPlotly({
-      req(input$time_series_vars)
-      
-      # Créer un graphique vide
-      p <- plot_ly(rv, x = rv$time_series_df[,input$date])
-      
-      for (var in input$time_series_vars) {
-        p <- p %>%
-          add_lines(y = rv$time_series_df[,input$time_series_vars], name = var, type = 'scatter', mode = 'lines')
-      }
-      # Ajuster la mise en page
-      p <- p %>%
-        layout(title = "Séries temporelles",
-               xaxis = list(title = "Temps"),
-               yaxis = list(title = "Valeur"),
-               legend = list(title = list(text = "Variables")))
-      
-      return(p)
-      
-      
-        #plot_ly(rv$time_series_df, x = rv$time_series_df[,input$date], y = rv$time_series_df[,input$time_series_vars], type = 'scatter', mode = 'lines')
+        plot_ly(
+            long_data, 
+            x       = ~date, 
+            y       =~value, 
+            color   = ~variable,
+            type    = "scatter",
+            mode    = "lines",
+            colors = "Set1"
+        )
+
+    
     })
-
-
-
     } else {
         output$develop_output <- renderText("Selectionnez une range de données correcte pour aficher les analyse")
     }
-    x <- reactive({
-        rv$time_series_df[,input$date]
-    })
-    
-    y <- reactive({
-        rv$time_series_df[,input$time_series_vars]
-    })
 
-    output$line_evo_multi_var <- renderPlotly({
-        req(rv$time_series_df)
-        if (!is.null(rv$time_series_df)){
-            plot_ly(rv$time_series_df, x = x(), y = y(), type = 'scatter', mode = 'lines')
-        }
-    })
+
+    # x <- reactive({
+    #     rv$time_series_df[,input$date]
+    # })
+    
+    # y <- reactive({
+    #     rv$time_series_df[,input$time_series_vars]
+    # })
+
+    # output$line_evo_multi_var <- renderPlotly({
+    #     req(rv$time_series_df)
+    #     plot_ly(rv$time_series_df, x = x(), y = y(), type = 'scatter', mode = 'lines')
+    # })
 
 
 })

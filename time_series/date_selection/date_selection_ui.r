@@ -78,7 +78,7 @@ date_selection_ui <- sidebarLayout(
     mainPanel( 
         h2(textOutput("selected_date_time")),
 
-        plotOutput("visu_time_series_single_var"),
+        # plotOutput("visu_time_series_single_var"),
         plotlyOutput("line_evo_multi_var")
     )
 )

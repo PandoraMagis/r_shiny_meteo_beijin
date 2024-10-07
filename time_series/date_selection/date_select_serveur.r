@@ -67,32 +67,51 @@ observeEvent({
 
     if (!is.null(rv$time_series_df) && length(input$time_series_vars) >= 1 ){
         output$develop_output <- renderText("")
-        # data  visualisation
 
-        # Configuration de l'espace de graphique
-        # num_plots <- length(input$time_series_vars)
-        # par(mfrow = c(num_plots, 1))   # Disposition des graphiques
 
-        # # Création d'un boxplot
-        # output$visu_time_series_single_var <- renderPlot({lapply(
-        #     input$selectedVariables, function(var) {
-        #         # Créer un boxplot pour chaque variable sélectionnée
-        #         boxplot(data[[var]] ~ data[[input$periode_mod]], 
-        #                 main = paste("Box Plot de", var, "par Temps"), 
-        #                 xlab = "Temps", 
-        #                 ylab = var,
-        #                 col = "lightblue")
-        # })})
-        # par(mfrow = c(1, 1))
-        output$visu_time_series_single_var <- renderPlot({
-            boxplot(rv$time_series_df[[input$time_series_vars]] ~ rv$time_series_df[[input$periode_mod]])
 
-        })
+    output$line_evo_multi_var <- renderPlotly({
+      req(input$time_series_vars)
+      
+      # Créer un graphique vide
+      p <- plot_ly(rv, x = rv$time_series_df[,input$date])
+      
+      for (var in input$time_series_vars) {
+        p <- p %>%
+          add_lines(y = rv$time_series_df[,input$time_series_vars], name = var, type = 'scatter', mode = 'lines')
+      }
+      # Ajuster la mise en page
+      p <- p %>%
+        layout(title = "Séries temporelles",
+               xaxis = list(title = "Temps"),
+               yaxis = list(title = "Valeur"),
+               legend = list(title = list(text = "Variables")))
+      
+      return(p)
+      
+      
+        #plot_ly(rv$time_series_df, x = rv$time_series_df[,input$date], y = rv$time_series_df[,input$time_series_vars], type = 'scatter', mode = 'lines')
+    })
+
+
 
     } else {
         output$develop_output <- renderText("Selectionnez une range de données correcte pour aficher les analyse")
     }
+    x <- reactive({
+        rv$time_series_df[,input$date]
+    })
+    
+    y <- reactive({
+        rv$time_series_df[,input$time_series_vars]
+    })
 
+    output$line_evo_multi_var <- renderPlotly({
+        req(rv$time_series_df)
+        if (!is.null(rv$time_series_df)){
+            plot_ly(rv$time_series_df, x = x(), y = y(), type = 'scatter', mode = 'lines')
+        }
+    })
 
 
 })

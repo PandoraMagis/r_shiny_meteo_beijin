@@ -65,7 +65,7 @@ output$missing_data <- renderUI({
                TRUE ~ "#ffcccb"  # Light red
              )
     ) %>%
-    column_spec(1, color = sapply(missing_summary$Missing_Percentage, function(x) {
+    column_spec(c(1,2), color = sapply(missing_summary$Missing_Percentage, function(x) {
       if (x == 0) {
         "#004d00"  # Dark green
       } else if (x <= 2.5) {

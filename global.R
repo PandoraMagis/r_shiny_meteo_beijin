@@ -12,6 +12,7 @@ options(encoding = "UTF-8")
 # Importation des fichiers UI
 source("./PAGE_data_visualisation.r")
 source("./PAGE_correlations.R")#onglet correlations
+source("./PAGE_analyse_stat.R")
 source("./theme_switch/switch_ui.r")
 
 # Importation des fichiers serveur
@@ -28,10 +29,7 @@ ui <- navbarPage(
   page_visu_correlations,
   
   # Troisième page (Onglet 3)
-  tabPanel("Etude des séries temporelles",
-           h1("Bienvenue sur la page d'étude des séries temporelles"),
-           p("Voici la description de la troisième page.")
-  ),
+  page_visu_analyse_stat,
   
   # Quatrième page (Onglet 4)
   tabPanel("Modèle de prévision des pics de pollution",
@@ -47,6 +45,7 @@ server <- function(input, output, session) {
   source("./radio_selector/radio_server.R", local = T)
   source("./theme_switch/switch_server.r", local = T)
   source("./correlations/corr_server.R", local = T)
+  #source("./analyse_stat/analyse_stat_server.R", local = T)
 }
 
 # Lancer l'application

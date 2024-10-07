@@ -86,6 +86,7 @@ date_selection_ui <- sidebarLayout(
                 "Heures"    = "hour"
             ), selected = "day"
         ),
-        plotOutput("visu_time_series_single_var")
+        plotOutput("visu_time_series_single_var"),
+        plotOutput("line_evo_multi_var")
     )
 )

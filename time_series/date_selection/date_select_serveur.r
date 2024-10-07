@@ -86,13 +86,31 @@ observeEvent({
         # par(mfrow = c(1, 1))
         output$visu_time_series_single_var <- renderPlot({
             boxplot(rv$time_series_df[[input$time_series_vars]] ~ rv$time_series_df[[input$periode_mod]])
-
         })
+
+    output$line_evo_multi_var <- renderPlotly({
+        plot_ly(rv$time_series_df, x = rv$time_series_df[,input$date], y = rv$time_series_df[,input$time_series_vars], type = 'scatter', mode = 'lines')
+    })
+
+
 
     } else {
         output$develop_output <- renderText("Selectionnez une range de données correcte pour aficher les analyse")
     }
+    x <- reactive({
+        rv$time_series_df[,input$date]
+    })
+    
+    y <- reactive({
+        rv$time_series_df[,input$time_series_vars]
+    })
 
+    output$line_evo_multi_var <- renderPlotly({
+        req(rv$time_series_df)
+        if (!is.null(rv$time_series_df)){
+            plot_ly(rv$time_series_df, x = x(), y = y(), type = 'scatter', mode = 'lines')
+        }
+    })
 
 
 })

@@ -5,7 +5,7 @@ library(shiny)
 library(leaflet)
 # jsp a quo sert cette lib la
 library(zoo)
- 
+ library(plotly)
 # Laoding data frame
 df<-read.table("df.csv",sep = ",",header = TRUE,stringsAsFactors = TRUE)
 

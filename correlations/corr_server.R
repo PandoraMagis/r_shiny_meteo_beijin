@@ -1,5 +1,3 @@
-library(shiny)
-library(ggplot2)
 #df <- read.csv("dfplusIQA.csv",sep=",",dec=".",header=T,stringsAsFactors = T,fileEncoding = "utf-8")
 
 

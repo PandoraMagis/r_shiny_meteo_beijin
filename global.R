@@ -3,8 +3,9 @@ library(formattable)
 library(dplyr)
 library(shiny)
 library(leaflet)
-# jsp a quo sert cette lib la
 library(zoo)
+library(shiny)
+library(ggplot2)
  
 # Laoding data frame
 df<-read.table("dfplusIQA.csv",sep = ",",header = TRUE,stringsAsFactors = TRUE)

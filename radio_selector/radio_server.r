@@ -87,7 +87,7 @@ chosen_row <- reactive({
   output$index_IQA <- renderText({
     row <- chosen_row()
     
-    if (is.null(row)) {
+    if (is.null(row) | is.na(row$IQA)) {
       "!!"  # Show "!!" if no data exists
     } else {
       iqa_value <- row$IQA

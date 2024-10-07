@@ -45,7 +45,7 @@ server <- function(input, output, session) {
   source("./radio_selector/radio_server.R", local = T)
   source("./theme_switch/switch_server.r", local = T)
   source("./correlations/corr_server.R", local = T)
-  source("./analyse_stat/analyse_stat_server.R", local = T)
+  #source("./analyse_stat/analyse_stat_server.R", local = T)
 }
 
 # Lancer l'application

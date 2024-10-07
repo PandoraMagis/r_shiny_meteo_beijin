@@ -1,15 +1,4 @@
 
-library(tidyverse)
-library(caret)
-library(randomForest)
-library(xgboost)
-library(e1071)
-library(ranger)
-library(lubridate)
-library(data.table)
-library(ggplot2)
-library(plotly)
-
 ## IMPORT DES DONNÉES 
 data <- read.table(file = "dfplusIQA.csv", 
                    header = T, sep= ",", stringsAsFactors = T)
@@ -103,8 +92,7 @@ output$plots <- renderPlot({
 
 
 
-library(car)
-library(plotROC)
+
 Anova(mod.glm, type = 3, test.statistic = "LR", singular.ok = T)
 pred.glm <- predict(mod.glm, newdata = testData[,-9], type = "response")
 head(pred.glm)
@@ -139,12 +127,10 @@ plot(FPR_test, TPR_test, type = "l", main = "Courbe ROC Generalized Linear Model
 
 
 
-library(rpart)
-library(rpart.plot)
 
 arbre1<- rpart(IQA_binaire~., data= trainData, cp=0.000001)
 print(arbre1)
-library(rpart.plot)
+
 plotcp(arbre1)
 cp.opt <- arbre1$cptable %>% as.data.frame() %>% 
   filter(xerror == min(xerror)) %>% select(CP) %>% max() %>% as.numeric()

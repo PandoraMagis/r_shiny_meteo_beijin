@@ -6,7 +6,13 @@ library(leaflet)
 library(zoo)
 library(shiny)
 library(ggplot2)
- 
+library(car)
+library(plotROC)
+library(rpart)
+library(rpart.plot)
+library(kableExtra)
+library(patchwork)
+
 # Laoding data frame
 df<-read.table("dfplusIQA.csv",sep = ",",header = TRUE,stringsAsFactors = TRUE)
 options(encoding = "UTF-8")

@@ -100,12 +100,36 @@ div#led {
   height: 100%; /* Optional: set a specific height */
 }
 .window-with-bg {
-  background-image: url('radio3.png');  /* Use your PNG image */
-  background-size: cover;  /* Ensures the image covers the whole container */
-  background-position: center;  /* Center the image */
-  background-repeat: no-repeat;  /* Prevent the image from repeating */
-  border-radius: 15px;  /* Optional: makes the edges rounded */
-  padding: 20px;  /* Add padding inside the container */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);  /* Adds a shadow for depth */
-  height: 100%; /* Optional: set a specific height */
+  background-image: url('radio3.png');  
+  background-size: cover;  
+  background-position: center;  
+  background-repeat: no-repeat;  
+  border: 8px solid rgb(157, 155, 155);  /* Thick black border */
+  border-top: 4px solid rgb(157, 155, 155);  /* Slimmer top border */
+  border-left: 6px solid rgb(157, 155, 155);  /* Side borders */
+  border-right: 6px solid rgb(157, 155, 155);  /* Side borders */
+  border-bottom: 4px solid rgb(157, 155, 155);  /* Bottom border */
+  border-radius: 15px;  
+  padding: 20px;  
+  box-shadow: 0px 4px 20px rgba(112, 101, 101, 0.3);  /* Darker shadow for depth */
+  height: 100%; 
+  position: relative;  /* Enables positioning for the dashed border */
 }
+
+/* Dashed border effect */
+.dashed-border {
+  position: absolute;  /* Position it absolutely within the parent */
+  top: -4px;  /* Overlaps the top border */
+  left: -4px;  /* Overlaps the left border */
+  right: -4px;  /* Overlaps the right border */
+  bottom: -4px;  /* Overlaps the bottom border */
+  border: 4px dashed #ffcc00;  /* Dashed border */
+  border-radius: 15px;  /* Match the border radius */
+  z-index: -1;  /* Places it behind the main container */
+}
+
+/* Optional: Ensure .window-with-bg has a minimum height */
+.window-with-bg {
+  min-height: 200px; /* Adjust based on your content */
+}
+

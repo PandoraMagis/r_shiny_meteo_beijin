@@ -78,15 +78,7 @@ date_selection_ui <- sidebarLayout(
     mainPanel( 
         h2(textOutput("selected_date_time")),
 
-        radioButtons("periode_mod", "Choissiez en fonction de quelle periode separer les donnés",
-            choices = c(
-                "Années"    = "year",
-                "Mois"      = "month",
-                "Jours"     = "day",
-                "Heures"    = "hour"
-            ), selected = "day"
-        ),
         plotOutput("visu_time_series_single_var"),
-        plotOutput("line_evo_multi_var")
+        plotlyOutput("line_evo_multi_var")
     )
 )

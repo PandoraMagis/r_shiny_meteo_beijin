@@ -8,5 +8,6 @@ analyse_stat_ui <-
                               "graves_problemes_respiratoires" = "graves_problemes_respiratoires",
                               "avec_enfant" = "avec_enfant"),
                   selected = "sans_maladie"),
+      verbatimTextOutput("analyse_stat_summary")
     )
   )

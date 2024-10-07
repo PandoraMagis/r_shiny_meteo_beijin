@@ -76,13 +76,23 @@ plotPM10<-ggplot(data, aes(x = data$hour, y = data$PM10)) +
 plotPM2.5+plotPM10
 
 
-mod<-lm(CO~hour,data=data)
-emmeans(mod,~hour)
+mod<-lm(SO2~hour,data=data)
+anova(mod)
+emmeans(mod,pairwise~hour)
+#comment afficher uniquement hour[n]-hour[n+1], colorier les significatifs?
 
-
-
-
-
+row_df<-data[5,6:11]
+row_df_iqa<-data[5,20:25]
+max_index <- which.max(row_df_iqa)
+row.names(row_df)<-c("concentrations")
+library(knitr)
+library(kableExtra)
+kable(row_df) %>%
+  kable_styling(bootstrap_options = "striped", full_width = F) %>%
+  row_spec(1, background = "#ffffe5") %>%  # Row 1 background
+  column_spec(max_index+1, color = "purple",bold = TRUE)  # Column 3 text color
+    
+    
 
 
 

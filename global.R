@@ -1,5 +1,5 @@
 # app.R
-
+library(formattable)
 library(dplyr)
 library(shiny)
 library(leaflet)

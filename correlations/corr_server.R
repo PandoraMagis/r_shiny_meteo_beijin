@@ -44,29 +44,43 @@ output$missing_data <- renderUI({
   # Calculate the percentage of missing data
   missing_data <- colSums(is.na(data)) / nrow(data) * 100
   
-  # Create an HTML string with color-coding based on missing data percentage
-  formatted_data <- sapply(seq_along(missing_data), function(i) {
-    column_name <- names(missing_data)[i]
-    missing_percent <- round(missing_data[i], 2)
-    
-    if (missing_percent == 0) {
-      color <- "#004d00"  
-    } else if (missing_percent <= 2.5) {
-      color <- "#00b300"  
-    } else if (missing_percent <= 6) {
-      color <- "#cccc00"  
-    } else if (missing_percent <= 12) {
-      color <- "#cc8500"  
-    } else {
-      color <- "#FF0000"  
-    }
-    
-    # Return HTML span with color
-    paste0("<span style='color:", color, "'>", column_name, ": ", missing_percent, "%</span>")
-  })
+  # Prepare data for kable
+  missing_summary <- data.frame(
+    Column = names(missing_data),
+    Missing_Percentage = round(missing_data, 2)
+  )
   
-  # Join all columns with a comma and return as HTML
-  HTML(paste("Données manquantes par colonne en pourcentage:", paste(formatted_data, collapse = ", ")))
+  # Create a kable table with color-coding based on missing data percentage
+  kable_output <- missing_summary %>%
+    select(Missing_Percentage) %>%  # Keep only the second column
+    kable("html", escape = FALSE, col.names = c("données manquantes (en %)")) %>%
+    kable_styling("striped", full_width = F) %>%
+    row_spec(0, bold = TRUE) %>%  # Bold header row
+    row_spec(1:nrow(missing_summary), 
+             background = case_when(
+               missing_summary$Missing_Percentage == 0 ~ "#FFFFFF",  # Light green for 0%
+               missing_summary$Missing_Percentage <= 2.5 ~ "#d0f0c0",  # Light green
+               missing_summary$Missing_Percentage <= 6 ~ "#fffacd",    # Light yellow
+               missing_summary$Missing_Percentage <= 12 ~ "#ffebcc",   # Light orange
+               TRUE ~ "#ffcccb"  # Light red
+             )
+    ) %>%
+    column_spec(1, color = sapply(missing_summary$Missing_Percentage, function(x) {
+      if (x == 0) {
+        "#004d00"  # Dark green
+      } else if (x <= 2.5) {
+        "#00b300"  # Green
+      } else if (x <= 6) {
+        "#cccc00"  # Yellow
+      } else if (x <= 12) {
+        "#cc8500"  # Orange
+      } else {
+        "#FF0000"  # Red
+      }
+    }))
+  
+  # Return the HTML table
+  HTML(kable_output)
 })
 
 
@@ -158,6 +172,12 @@ output$emmeansplots <- DT::renderDataTable({
   mod <- lm(formula, data = data)
   signif <- emmeans(mod, specs = x_var, data = data)
   signif_summary <- as.data.frame(summary(signif))
-  DT::datatable(signif_summary, options = list(pageLength = 25, autoWidth = TRUE))
+  datatable_output <- DT::datatable(signif_summary, options = list(pageLength = 25, autoWidth = TRUE)) %>%
+    DT::formatStyle(
+      columns = c(2),          # Specify columns 3 and 4
+      fontWeight = 'bold'          # Set font weight to bold
+    )
+  
+  return(datatable_output)
 })
 

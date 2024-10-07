@@ -1,9 +1,22 @@
-sur la page 1 radio :
-	¤ implémenter les polluants
-	¤ lier le module maps à la variable localisation pour afficher les données
-	¤ lier le bouton switch dark-mode à la maps
+à faire:
 
-sur la page 2:
+page principale
+	¤ comment lier dark-mode au input stylé
+	¤ changer l'icône mettre icône neutre
+	¤ icône quand ya pluie?
+	¤ "tes ptis icônes qui trainaient"
+	> afficher polluants 
+	> changer "additional info"
+	> 
 
-	¤ visualisation des séries au choix sur une période choisie, max 2/3 séries?
-	¤ on garde les dates sélectionnées sur la page 1 pour garder une continuité/un sens de l'exploration entre les pages
+page correlations 
+	> peut-être mettre sous forme tableau données manquantes?
+	> "journalière"?
+	> changer titre analyse exploratoire des données
+
+Etude des séries temporelles
+	> ???
+
+modélisation 
+	> intégrer le fichier R
+	> 

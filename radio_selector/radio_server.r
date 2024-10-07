@@ -185,4 +185,19 @@ chosen_row <- reactive({
       paste("heure:", slider_value_hour)
     })
   })
-
+  output$formattedTable <- renderTable({
+    require("knitr")
+    require("kableExtra")
+    row <- chosen_row()
+    row_df <- row[, 6:11]
+    row_df_iqa <- row[, 20:25]
+    max_index <- which.max(row_df_iqa)
+    
+    row.names(row_df) <- c("concentrations")
+    
+    row_df %>%
+      kable() %>%
+      kable_styling(bootstrap_options = "striped", full_width = F) %>%
+      row_spec(1, background = "#ffffe5") %>%  # Row 1 background
+      column_spec(max_index + 1, color = "purple",bold = TRUE)  # Highlight max index column
+  }, sanitize.text.function = identity)

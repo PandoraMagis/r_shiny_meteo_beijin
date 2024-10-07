@@ -1,12 +1,12 @@
 correlations_number <- 
   fluidPage(
     mainPanel(
-    htmlOutput("missing_data")),
+      htmlOutput("missing_data")),
       selectInput("time_period", "plage de temps : ",
-                choices = c("horaire" = "hour",
-                            "journaliere" = "day",
-                            "mensuelle" = "month",
-                            "annuelle" = "year"),
+                choices = c("journalière" = "hour",
+                            "mensuelle" = "day",
+                            "annuelle" = "month",
+                            "quinquennale" = "year"),
                 selected = "hour"),
     titlePanel("evolutions des polluants au cours du temps et matrice des correlations"),
       mainPanel(

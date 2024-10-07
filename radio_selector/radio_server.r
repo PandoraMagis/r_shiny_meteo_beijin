@@ -189,6 +189,9 @@ chosen_row <- reactive({
     require("knitr")
     require("kableExtra")
     row <- chosen_row()
+    if(is.null(row)){
+      paste("!!")
+    }
     row_df <- row[, 6:11]
     row_df_iqa <- row[, 20:25]
     max_index <- which.max(row_df_iqa)

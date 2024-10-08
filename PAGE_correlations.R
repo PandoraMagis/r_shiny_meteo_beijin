@@ -3,7 +3,7 @@ source("./correlations/corr_ui.R", local = T)
 
 
 page_visu_correlations <- tabPanel(
-  "analyse exploratoire des données", 
+  "Analyse exploratoire des données", 
   # display flex components
   div(
     p("chargement des plots...")

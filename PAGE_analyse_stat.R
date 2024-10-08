@@ -3,7 +3,7 @@ source("./analyse_stat/analyse_stat_ui.R", local = T)
 
 
 page_visu_analyse_stat <- tabPanel(
-  "analyse statistiques", 
+  "Modèles prédictifs", 
   # display flex components
   div(
     p("chargement des plots...")

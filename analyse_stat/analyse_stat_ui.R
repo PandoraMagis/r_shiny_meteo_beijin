@@ -25,10 +25,10 @@ analyse_stat_ui <-
     mainPanel(
       uiOutput("confirmation_msg"),
       # Affichage des résumés des modèles
-      h3("Résumé du Modèle de régression logistique (glm)"),
+      h3("Résumé du Modèle de régression logistique (GLM)"),
       verbatimTextOutput("model1_summary"),
       
-      h3("Résumé du Modèle des abre de décision"),
+      h3("Résumé du Modèle d'abres de décision (CART)"),
       verbatimTextOutput("model2_summary"),
       
       # Affichage des courbes ROC

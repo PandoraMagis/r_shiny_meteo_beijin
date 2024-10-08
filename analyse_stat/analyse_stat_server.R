@@ -38,7 +38,6 @@ models <- reactiveValues(
 
   observeEvent(input$submit_profil, {
     req(input$selected_profil)  
-    profil <- input$profil_input
     # Fonction qui renvoie 1 ou 0 en fonction des règles pour chaque profil
     get_response <- function(IQA, profil) {
       if(profil == "fumeur") {
@@ -58,7 +57,7 @@ models <- reactiveValues(
     #data <- read.table(file = "/Users/achillegausseres/OneDrive/PRO/ACO/3A/Projet_Big_Data/dfplusIQA.csv", 
                        #header = T, sep= ",", stringsAsFactors = T)
     
-    #data$IQA_binaire <- mapply(get_response, data$IQA, profil)
+    #data$IQA_binaire <- mapply(get_response, data$IQA, as.character(input$selected_profil))
     
     ## REORGANISATION DU JEU DE DONNÉES   
     data <- data[,-(6:11)]

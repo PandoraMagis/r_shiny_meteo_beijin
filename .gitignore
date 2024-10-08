@@ -49,3 +49,4 @@ po/*~
 rsconnect/
 .DS_Store
 global.R
+Global.R

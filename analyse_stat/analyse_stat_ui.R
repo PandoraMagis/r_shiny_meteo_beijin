@@ -8,7 +8,7 @@ analyse_stat_ui <-
         selectInput("selected_profil", "Choisissez un profil : ",
                     choices = c("fumeur" = "fumeur",
                                 "sans_maladie" = "sans_maladie",
-                                "asmathique" = "asmathique",
+                                "asthmatique" = "asthmatique",
                                 "graves_problemes_respiratoires" = "graves_problemes_respiratoires",
                                 "avec_enfant" = "avec_enfant"),
                     selected = "sans_maladie"),
@@ -25,10 +25,10 @@ analyse_stat_ui <-
     mainPanel(
       uiOutput("confirmation_msg"),
       # Affichage des résumés des modèles
-      h3("Résumé du Modèle de régression logistique (GLM)"),
+      h3("Performances du Modèle de régression logistique (GLM)"),
       verbatimTextOutput("model1_summary"),
       
-      h3("Résumé du Modèle d'abres de décision (CART)"),
+      h3("Performances du Modèle d'abres de décision (CART)"),
       verbatimTextOutput("model2_summary"),
       
       # Affichage des courbes ROC

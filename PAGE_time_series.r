@@ -4,7 +4,6 @@ page_time_series <- tabPanel(
     "Etude des séries temporelles",
 
     h1("time to analyse time it self"),
-    h2(textOutput("develop_output")),
     date_selection_ui,
 
 # Need the map

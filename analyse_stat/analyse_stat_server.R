@@ -44,7 +44,7 @@ models <- reactiveValues(
         return(ifelse(IQA %in% c("dangereux"), 1, 0))
       } else if(profil == "sans_maladie") {
         return(ifelse(IQA %in% c("dangereux", "tres non-sain"), 1, 0))
-      } else if(profil == "asmathique") {
+      } else if(profil == "asthmatique") {
         return(ifelse(IQA == c("dangereux", "tres non-sain","non-sain"), 1, 0))
       } else if(profil == "graves_problemes_respiratoires") {
         return(ifelse(IQA %in% c("dangereux", "tres non-sain","non-sain","non-sain pour sensibles"), 1, 0))
@@ -56,7 +56,7 @@ models <- reactiveValues(
     }
 
     
-    #data$IQA_binaire <- mapply(get_response, data$IQA, as.character(input$selected_profil))
+    #data$IQA_binaire <- mapply(get_response, data.frame(data$IQA), as.character(input$selected_profil))
     
     ## REORGANISATION DU JEU DE DONNÉES   
     data <- data[,-(6:11)]

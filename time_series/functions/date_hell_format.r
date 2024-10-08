@@ -5,7 +5,7 @@ time_stamp = function (year_start, month_start, day_start, hour_start, year_stop
     ( year_start == year_stop &&  month_start == month_stop && day_start > day_stop) | # nolint
     ( year_start == year_stop &&  month_start == month_stop && day_start == day_stop && hour_start > hour_stop ) # nolint
   ){
-    # space is neggatif
+    
   } else {
     # print(paste(
     #   paste0(year_start,"/", month_start,"/", day_start,"-", hour_start,"h"),
